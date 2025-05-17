@@ -33,5 +33,4 @@ export const PROMPT_TEMPLATE = `**Role:** AI assistant for extracting scheduled 
 5.  **Output:**
     * If items were found, output the JSON list. Example: \`[ {{"date": "{now_date_iso}", "summary": "Observe cauliflory"}}, {{"date": "{weekend_start_date_iso}", "summary": "Walk in Botanical Garden"}}, {{"date": "{current_year}-07-07", "summary": "Belgrade-Subotica railway opening"}} ]\`
     * If no items were found, output an empty JSON list: \`[]\`.
-    * **Output ONLY the JSON list or \`[]\`, nothing else.**`
-
+    * **Output ONLY the JSON list or \`[]\`, nothing else.**`;

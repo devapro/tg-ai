@@ -4,15 +4,40 @@ import readline from 'readline';
 import dotenv from 'dotenv';
 import { checkContent } from './gemeni';
 import { exit } from 'process';
-import { channelListener, type ChannelMessageModel } from './components/channel_listener';
-import { channelsList } from './components/channels_list';
 
 dotenv.config();
 
 const apiId: number = parseInt(process.env.TG_API_ID);
 const apiHash: string = process.env.TG_API_HASH;
 
+// console.log(process.env.TG_API_HASH);
+// console.log(apiId, apiHash);
+// exit(0);
+
 const stringSession = new StringSession(process.env.SESSION); // fill this later with the value from session.save()
+
+const groupsToListen = [
+    'compose_broadcast',
+    'mobile_appsec_world',
+    'mobiledeveloperchat',
+    'mobi_dev',
+    'alexgladkovblog',
+    'androidMalware',
+    'apptractor',
+    'kotlin_broadcast',
+    'android_broadcast',
+    'applib',
+    'compose_broadcast',
+    'mobiledevnews',
+    'droidgr',
+    'startandroid',
+    'android_under_the_hood',
+    'mobile_native',
+    'android_live',
+    'android_guards_today',
+    'mobile_compose',
+    'android_core',
+];
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -35,20 +60,35 @@ const rl = readline.createInterface({
     });
     console.log('You should now be connected.');
     console.log(client.session.save()); // Save this string to avoid logging in again
-    
-    channelListener(client, channelsList, async (message: ChannelMessageModel) => {
-    
+    //await client.sendMessage('me', { message: 'Hello!' });
+
+    //await client.sendMessage('https://t.me/droidrss', { message: 'Hello!' });
+
+
+    // fetch messages
+    const chat = 'https://t.me/compose_broadcast';
+    for await (const message of client.iterMessages(chat, { limit: 20 })) {
+        console.log(message.id, message.text);
+        if (message.text == undefined) {
+            console.log('Message text is undefined');
+            continue;
+        }
+        if (message.text.length < 10) {
+            console.log('Message text is too short');
+            continue;
+        }
         const result = await checkContent(message.text);
         if (result.summary != undefined && result.summary.length > 0) {
                 console.log(result);
                 await client.sendMessage('https://t.me/droidrss', {
                     message: `
-${message.channel.url}/${message.id}
+${chat}/${message.id}
 ${result.summary}
 ${result.url}
 `,
                 });
             }
-    });
+    }
 
+   
 })();
