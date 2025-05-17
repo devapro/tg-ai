@@ -1,0 +1,9 @@
+version: '3'
+services:
+  trade-bot:
+    image: tg-ai-rss-bot:1.0
+    build: .
+    container_name: tg-ai-rss-bot
+    volumes:
+      - $HOME/apps/tg-ai-rss:/tg-ai # data path
+    restart: unless-stopped
