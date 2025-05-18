@@ -19,4 +19,7 @@ export const channelsList = [
     'android_guards_today',
     'mobile_compose',
     'android_core',
+    'dolgo_polo_dev',
+    'kotlin_adept',
+    'android_junior'
 ]
