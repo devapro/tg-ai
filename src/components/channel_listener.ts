@@ -17,7 +17,7 @@ export async function channelListener(
 
      // subscribe to messages
     client.addEventHandler(async (message: NewMessageEvent) => {
-        console.log(message.chatId, message.isPrivate);
+        console.log(message.chatId, message.chat?.id, message.isPrivate);
 
         console.log('Message:', message.message.text);
 
@@ -27,7 +27,7 @@ export async function channelListener(
         }
 
         const messageChannel = channelConfigs.find((channel) => {
-            return message.chatId == channel.id;
+            return message.chat?.id == channel.id;
         });
         if (messageChannel == undefined) {
             console.log('Message is not from channel');

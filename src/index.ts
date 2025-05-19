@@ -1,9 +1,8 @@
-import { Api, TelegramClient } from 'telegram';
+import { TelegramClient } from 'telegram';
 import { StringSession } from 'telegram/sessions';
 import readline from 'readline';
 import dotenv from 'dotenv';
 import { checkContent } from './gemeni';
-import { exit } from 'process';
 import { channelListener, type ChannelMessageModel } from './components/channel_listener';
 import { channelsList } from './components/channels_list';
 

@@ -21,5 +21,6 @@ export const channelsList = [
     'android_core',
     'dolgo_polo_dev',
     'kotlin_adept',
-    'android_junior'
+    'android_junior',
+    'rozov_blog'
 ]
