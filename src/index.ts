@@ -37,7 +37,7 @@ const rl = readline.createInterface({
 
     channelListener(client, channelsList, async (message: ChannelMessageModel) => {
         const result = await checkContent(message.text);
-        if (result.summary != undefined && result.summary.length > 0) {
+        if (result != null && result.summary != undefined && result.summary.length > 0) {
             console.log(result);
             await client.sendMessage('https://t.me/droidrss', {
                 message: `
