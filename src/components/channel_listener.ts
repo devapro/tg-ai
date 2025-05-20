@@ -1,4 +1,4 @@
-import type { TelegramClient } from 'telegram';
+import { Api, type TelegramClient } from 'telegram';
 import { createChannelConfig, type ChannelConfig } from './create_channel_config';
 import { NewMessage, type NewMessageEvent } from 'telegram/events';
 
@@ -17,7 +17,10 @@ export async function channelListener(
 
     // subscribe to messages
     client.addEventHandler(async (message: NewMessageEvent) => {
-        console.log(message.chatId, message.chat?.id, message.isPrivate);
+  
+        if (message.message.peerId instanceof Api.PeerChannel) {
+            console.log('Channel id:', message.message.peerId.channelId, message.isPrivate);
+        }
 
         console.log('Message:', message.message.text);
 
@@ -27,7 +30,13 @@ export async function channelListener(
         }
 
         const messageChannel = channelConfigs.find((channel) => {
-            return message.chat?.id == channel.id;
+            if (message.message.peerId instanceof Api.PeerChannel) {
+                console.log('Channel id:', channel.id);
+                console.log('channelId:', message.message.peerId.channelId);
+                console.log(message.message.peerId.channelId.compareTo(channel.id) == 0);
+                return message.message.peerId.channelId.compareTo(channel.id) == 0;
+            }
+            return false;
         });
         if (messageChannel == undefined) {
             console.log('Message is not from channel');

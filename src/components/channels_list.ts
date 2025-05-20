@@ -1,4 +1,5 @@
 export const channelsList = [
+    'testactionx',
     'compose_broadcast',
     'mobile_appsec_world',
     'mobiledeveloperchat',
