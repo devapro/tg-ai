@@ -1,12 +1,12 @@
-import type { TelegramClient } from "telegram";
-import { createChannelConfig, type ChannelConfig } from "./create_channel_config";
-import { NewMessage, type NewMessageEvent } from "telegram/events";
+import type { TelegramClient } from 'telegram';
+import { createChannelConfig, type ChannelConfig } from './create_channel_config';
+import { NewMessage, type NewMessageEvent } from 'telegram/events';
 
 export type ChannelMessageModel = {
     id: number;
     text: string;
     channel: ChannelConfig;
-}
+};
 
 export async function channelListener(
     client: TelegramClient,
@@ -15,7 +15,7 @@ export async function channelListener(
 ): Promise<void> {
     const channelConfigs = await createChannelConfig(client, channelsList);
 
-     // subscribe to messages
+    // subscribe to messages
     client.addEventHandler(async (message: NewMessageEvent) => {
         console.log(message.chatId, message.chat?.id, message.isPrivate);
 

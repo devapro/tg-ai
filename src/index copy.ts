@@ -64,7 +64,6 @@ const rl = readline.createInterface({
 
     //await client.sendMessage('https://t.me/droidrss', { message: 'Hello!' });
 
-
     // fetch messages
     const chat = 'https://t.me/compose_broadcast';
     for await (const message of client.iterMessages(chat, { limit: 20 })) {
@@ -79,16 +78,14 @@ const rl = readline.createInterface({
         }
         const result = await checkContent(message.text);
         if (result.summary != undefined && result.summary.length > 0) {
-                console.log(result);
-                await client.sendMessage('https://t.me/droidrss', {
-                    message: `
+            console.log(result);
+            await client.sendMessage('https://t.me/droidrss', {
+                message: `
 ${chat}/${message.id}
 ${result.summary}
 ${result.url}
 `,
-                });
-            }
+            });
+        }
     }
-
-   
 })();

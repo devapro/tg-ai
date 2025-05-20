@@ -34,20 +34,18 @@ const rl = readline.createInterface({
     });
     console.log('You should now be connected.');
     console.log(client.session.save()); // Save this string to avoid logging in again
-    
+
     channelListener(client, channelsList, async (message: ChannelMessageModel) => {
-    
         const result = await checkContent(message.text);
         if (result.summary != undefined && result.summary.length > 0) {
-                console.log(result);
-                await client.sendMessage('https://t.me/droidrss', {
-                    message: `
+            console.log(result);
+            await client.sendMessage('https://t.me/droidrss', {
+                message: `
 ${message.channel.url}/${message.id}
 ${result.summary}
 ${result.url}
 `,
-                });
-            }
+            });
+        }
     });
-
 })();

@@ -1,4 +1,4 @@
-import { checkContent } from "./gemeni";
+import { checkContent } from './gemeni';
 
 const text = `
  **Релиз Jetpack Navigation 2.9.0**
@@ -8,10 +8,9 @@ const text = `
 👉 Улучшения API
 
 #jetpack #jetpackupdate #navigation #compose #kmp
-`
+`;
 
 const result = await checkContent(text);
-        if (result.summary != undefined && result.summary.length > 0) {
-                console.log(result);
-                
-            }
+if (result.summary != undefined && result.summary.length > 0) {
+    console.log(result);
+}
