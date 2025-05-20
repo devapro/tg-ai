@@ -26,7 +26,7 @@ export async function createChannelConfig(
             id: result.fullChat.id,
         });
         await delay(1000);
-        console.log(`Channel ${channel} added`);
+        console.log(`Channel ${channel} added, id: ${result.fullChat.id}`);
     }
 
     return channelConfigs;
