@@ -12,10 +12,14 @@ Output ONLY a JSON: \`{"url": "item url", "summary": "Item Summary"}\` or an emp
 1.  **Identify Items:** Find mentions of:
     * Android OS updates, libraries updates or announcements. (e.g. "Android 14 Beta 1 is now available", "Jetpack Compose 1.5.0-alpha01 released", "Coil 3.2.0 выпущен c обновлениями")
     * Find url in the text.
+    * Extract the url from the text without any modifications.
 2.  **Exclude:** Ignore articles, general information, suggestions, recomendations.
     * Ignore any other information that is not related to updates or releases of libraries or components.
     * Ignore any other information that is not related to libraries releases.
     * Ignore any other information that is not related to components releases.
+    * Ignore text that contains no relevant information about updates or releases.
+    * Ignore text that contains no relevant information about libraries updates or releases.
+    * Ignore text that contains links https://boosty.to
 3.  **For Each Found Item:**
     * **a. Determine main subject:** Check if the text provides an explicit description of update, library name, main change, version.
     * **b. Find related url**
