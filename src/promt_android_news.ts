@@ -18,6 +18,7 @@ Output ONLY a JSON: \`{"url": "item url", "summary": "Item Summary"}\` or an emp
     * Ignore any other information that is not related to libraries releases.
     * Ignore any other information that is not related to components releases.
     * Ignore text that contains no relevant information about updates or releases.
+    * Ignore text that does not contain version of libraries, tools or releases.
     * Ignore text that contains no relevant information about libraries updates or releases.
     * Ignore text that contains links https://boosty.to
 3.  **For Each Found Item:**
