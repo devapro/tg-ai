@@ -24,4 +24,9 @@ export const channelsList = [
     'kotlin_adept',
     'android_junior',
     'rozov_blog',
+    'androiddeveu',
+    'TheDailyKotlin',
+    'android_its',
+    'developer_mobila',
+    'mobile_native'
 ];
