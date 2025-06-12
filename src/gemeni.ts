@@ -7,26 +7,26 @@ dotenv.config();
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export async function checkContent(message: string) {
-    const response = await ai.models.generateContent({
-        model: 'gemini-2.0-flash',
-        contents: PROMPT_ANDROID_UPDATES + '\n\n' + message,
-        config: {
-            temperature: 0.5,
-            systemInstruction:
-                'You are experienced android developer. You want to know the lates news and updates related to android developemnt.',
-        },
-    });
-
-    console.log('Response text:', response.text);
-    if (response.text == undefined || response.text === '') {
-        return false;
-    }
-
     try {
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.0-flash',
+            contents: PROMPT_ANDROID_UPDATES + '\n\n' + message,
+            config: {
+                temperature: 0.5,
+                systemInstruction:
+                    'You are experienced android developer. You want to know the lates updates of libraries and tools.',
+            },
+        });
+
+        console.log('Response text:', response.text);
+        if (response.text == undefined || response.text === '') {
+            return false;
+        }
+
         const json = JSON.parse(response.text.replaceAll('```json', '').replaceAll('```', ''));
         return json;
     } catch (error) {
-        console.error('Error parsing JSON:', error);
+        console.error('Error in checkContent:', error);
         return null;
     }
 }
